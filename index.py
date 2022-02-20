@@ -1,7 +1,7 @@
 from bullet import Input, colors, YesNo
 from colored import fg, attr
-from os.path import isdir 
 from os import listdir, rename
+from os.path import isdir 
 from getpass import getuser
 
 colorRed = fg('#CC0000')
@@ -9,17 +9,12 @@ colorGreen = fg('#73D216')
 colorBlue = fg('#338CFF')
 res = attr('reset')
 
-
 def err():
     print(f'{colorRed}Wrong data{res}')
     exit()
 
-def validateNumber(number):
-    try: return int(number)
-    except: err()
-
 def validateDir(directory): 
-    if isdir(directory) == False: err()
+    if not isdir(directory): err()
     else: return directory 
 
 def enterDirectory():
