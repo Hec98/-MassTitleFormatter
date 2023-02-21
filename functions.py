@@ -1,4 +1,4 @@
-from bullet import Input, colors, YesNo
+from bullet import Input, colors, YesNo, Bullet
 from colored import fg, attr
 from os import listdir, rename
 from os.path import isdir, isfile
@@ -26,7 +26,19 @@ def traverseDirectory(directory):
     directoryArray = listdir(directory)
     directorys = []
 
-    dir_file = YesNo(f'{colorGreen}Do you want to rename the folders (y) or files (n)? {res}', default = 'n', word_color = colors.foreground["yellow"]).launch()
+    dir_file = Bullet(
+        prompt = '\nDo yo want to rename?',
+        choices = ['Folders', 'Files'],
+        indent = 0,
+        align = 5, 
+        margin = 2,
+        shift = 0,
+        bullet = '',
+        pad_right = 5,
+        return_index = True
+    )
+    _, index = dir_file.launch()
+    dir_file = True if index == 0 else False
 
     print(f'Current name {colorBlue}::{res} New name')
     for file in directoryArray: 
